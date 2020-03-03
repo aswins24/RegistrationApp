@@ -14,7 +14,7 @@ import com.uttara.mvc.components.BusinessServiceInterface;
 import com.uttara.mvc.components.Constants;
 import com.uttara.mvc.components.LoginBean;
 import com.uttara.mvc.components.RegBean;
-import com.uttara.mvc.components.RegisterBean;
+import com.uttara.mvc.components.Register;
 
 @Controller
 public class RegistrationController {
@@ -39,7 +39,7 @@ public class RegistrationController {
 		return "Register";
 	}
 	
-	@RequestMapping("/register")
+	@RequestMapping("/registers")
 	public String register(@ModelAttribute("reg") @Valid RegBean bean,BindingResult result,Model model)
 	{
 		System.out.println("in RAC->register() bean = "+bean);
@@ -88,7 +88,7 @@ public class RegistrationController {
 			return "Login";
 		} 
 			
-			RegisterBean rBean = service.Login(bean.getEmail(), bean.getPass());
+			Register rBean = service.Login(bean.getEmail(), bean.getPass());
 			
 			if(rBean != null) {
 				

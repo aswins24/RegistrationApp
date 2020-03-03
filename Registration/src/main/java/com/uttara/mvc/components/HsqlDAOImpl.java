@@ -18,7 +18,7 @@ public class HsqlDAOImpl implements DAO {
 		Session session = factory.openSession();
 		session.beginTransaction();
 		
-		RegisterBean register = new RegisterBean();
+		Register register = new Register();
 		register.setuName(bean.getUname());
 		register.setDob(bean.getDob());
 		register.setEmail(bean.getEmail());
@@ -29,6 +29,21 @@ public class HsqlDAOImpl implements DAO {
 		session.getTransaction().commit();
 		session.close();
 		return null;
+	}
+	public Long insert(RegisterBean bean) {
+		Long id =  null;
+		Session session = factory.openSession();
+		session.beginTransaction();
+		
+		Register_2 register = new Register_2();
+		register.setName(bean.getName());
+		register.setEmail(bean.getEmail());
+		register.setPassword(bean.getPassword());
+		
+		id = (Long) session.save(register);
+		session.getTransaction().commit();
+		session.close();
+		return id;
 	}
 
 	public String update(String email, RegBean bean) {
@@ -41,21 +56,21 @@ public class HsqlDAOImpl implements DAO {
 		return null;
 	}
 
-	public List<RegisterBean> getUsers() {
+	public List<Register> getUsers() {
 		Session session = factory.openSession();
-		String squery = "from RegisterBean";
+		String squery = "from Register";
 		
 		session.beginTransaction();
-		List<RegisterBean> register = session.createQuery(squery).getResultList();
+		List<Register> register = session.createQuery(squery).getResultList();
 		session.getTransaction().commit();
 		session.close();
 		
 		return register;
 	}
 
-	public RegisterBean getUserInfo(String email) {
-		List<RegisterBean> register = null;
-		String squery = "from RegisterBean Where email in (:email)";
+	public Register getUserInfo(String email) {
+		List<Register> register = null;
+		String squery = "from Register Where email in (:email)";
 		Session session = factory.openSession();
 		Query query = session.createQuery(squery);
 		register = query.setParameter("email", email).getResultList();
@@ -67,10 +82,10 @@ public class HsqlDAOImpl implements DAO {
 			return null;
 	}
 	
-	public RegisterBean getUserInfo(String email, String pass) {
+	public Register getUserInfo(String email, String pass) {
         Session session = factory.openSession();
-        List<RegisterBean> register = null;
-        String squery = "from RegisterBean Where (email in (:email) and pass in (:pass))";
+        List<Register> register = null;
+        String squery = "from Register Where (email in (:email) and pass in (:pass))";
         
         session.beginTransaction();
         
@@ -81,5 +96,17 @@ public class HsqlDAOImpl implements DAO {
         session.close();
           
 		return (register.size() > 0)? register.get(0) : null;
+	}
+	public Register_2 getUser(String email) {
+		List<Register_2> register = null;
+		
+		Session session = factory.openSession();
+		String sQuery = "from Register_2 Where email in (:email)";
+		Query query = session.createQuery(sQuery);
+		register = query.setParameter("email", email).getResultList();
+		session.close();
+		System.out.println("in hsqldao.getUser -> "+register);
+		return register.size() > 0 ? register.get(0): null;
+		
 	}
 }

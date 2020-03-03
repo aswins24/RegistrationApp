@@ -11,7 +11,7 @@
 <body>
 	<h1>Register</h1>
 	
-	<sp:form action="register" modelAttribute="reg">
+	<sp:form action="registers" modelAttribute="reg">
 		
 		Enter name: <sp:input path="uname"/><sp:errors path="uname"/><br/>
 		Enter email: <sp:input path="email"/><sp:errors path="email"/><br/>

@@ -8,8 +8,12 @@ public interface BusinessServiceInterface {
 	
 	public boolean userCheck(String email);
 	
-	public RegisterBean Login(String email, String pass);
+	public Register Login(String email, String pass);
 	
-	public List<RegisterBean> usersInfo();
+	public List<Register> usersInfo();
+	
+	public String register(RegisterBean bean);
+	
+	public boolean userCheck(RegisterBean bean);
 	
 }

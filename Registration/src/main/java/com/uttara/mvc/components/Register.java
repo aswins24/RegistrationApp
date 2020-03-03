@@ -18,7 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="Register")
-public class RegisterBean {
+public class Register {
 	
 	@Id
 	@GeneratedValue
@@ -45,7 +45,7 @@ public class RegisterBean {
 		return id;
 	}
 	
-	public RegisterBean() {
+	public Register() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -106,7 +106,7 @@ public class RegisterBean {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		RegisterBean other = (RegisterBean) obj;
+		Register other = (Register) obj;
 		if (dob == null) {
 			if (other.dob != null)
 				return false;

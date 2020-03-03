@@ -6,4 +6,5 @@ public interface Constants {
 	String USER_EXISTS ="A user with same email id already exist";
 	String LOG_IN_SUCCESS = "You have successfully Logged In";
 	String LOG_IN_FAILED = "Either email or password is in correct";
+	String FAILURE = "Registration Failed";
 }
